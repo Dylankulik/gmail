@@ -1,11 +1,26 @@
-<?php
-$destino = 'dylankulik97@gmial.com'
+<?php 
+$correo = $_POST['gmail'];
 $nombre = $_POST['nombre'];
-$email = $_POST['email'];
-$mensaje = $_POST['mensaje'];
-
-$rta =  var_dump($nombre);
-mail($destino, $asunto, $mensaje );
-echo"<script> alert('correo enviado') </script>";
-echo"<script> setTimeout(\"location.href='correo.html'\",1000) </script>";
-?>
+$mensaje = $_POST['Mensaje'];
+$asunto = $_POST['asunto'];
+$destinatario = "dylankulik2006@gmail.com";
+$cuerpo = '
+    <html> 
+        <head> 
+            <title>'.$asunto.'</title> 
+        </head>
+        <body>
+            <p> 
+                Contacto:  '.$nombre. '  <br>
+                Mensaje: '.$mensaje.' <br> 
+            </p> 
+        </body>
+    </html>
+';
+//para el envío en formato HTML 
+$headers = "MIME-Version: 1.0\r\n"; 
+$headers .= "Content-type: text/html; charset=UTF8\r\n"; 
+//dirección del remitente
+$headers .= "FROM: $nombre <$correo>\r\n";
+mail($destinatario,$asunto,$cuerpo,$headers);
+?> 
