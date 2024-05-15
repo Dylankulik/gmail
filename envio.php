@@ -23,4 +23,10 @@ $headers .= "Content-type: text/html; charset=UTF8\r\n";
 //dirección del remitente
 $headers .= "FROM: $nombre <$correo>\r\n";
 mail($destinatario,$asunto,$cuerpo,$headers);
+if (mail($destinatario,$asunto,$cuerpo,$headers)) {
+    header("Location: https://dylankulik.github.io/gmail/"); // Redirección a la página principal en caso de éxito
+  } else {
+    // Manejo del error: mostrar mensaje de error, registrar en un log, etc.
+    echo "Error al enviar el correo electrónico";
+  }
 ?> 
